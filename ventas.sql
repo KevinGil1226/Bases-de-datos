@@ -1,20 +1,25 @@
 CREATE DATABASE bd_ventas;
 USE bd_ventas;
 CREATE TABLE tbl_ventas(
-    codigo_ventas INT NOT NULL AUTO_INCREMENT,
+    id_codigo_factura INT NOT NULL AUTO_INCREMENT,
     fecha INT(20) NOT NULL,
-    nombre_cliente VARCHAR(20) NOT NULL,
+    id_nombre_cliente INT NOT NULL,
     direccion INT(20) NOT NULL,
-    forma_de_pago VARCHAR(20) NOT NULL,
-    vendedor VARCHAR(20) NOT NULL,
+    id_pago INT NOT NULL,
+    id_vendedor INT NOT NULL,
     servicio VARCHAR(20) NOT NULL,
     precio_unitario INT(20) NOT NULL,
     cantidad VARCHAR(20) NOT NULL,
     total VARCHAR(20) NOT NULL,
-    prducto VARCHAR(20) NOT NULL,
-    ciudad VARCHAR(20) NOT NULL,
+    id_producto INT NOT NULL,
+    id_ciudad INT NOT NULL,
     precio_mayor VARCHAR(20) NOT NULL,
-    PRIMARY KEY(codigo_ventas)
+    PRIMARY KEY(id_codigo_factura),
+    FOREIGN KEY(id_vendedor) REFERENCES tbl_vendedor(id_vendedor),
+    FOREIGN KEY(id_nombre_cliente) REFERENCES tbl_cliente(id_cliente),
+    FOREIGN KEY(id_producto) REFERENCES tbl_producto (id_producto),
+    FOREIGN KEY(id_pago) REFERENCES tbl_pago (id_pago),
+    FOREIGN KEY(id_ciudad) REFERENCES tbl_ciudad (id_ciudad)
 )
 CREATE TABLE tbl_departamento(
     id_codigo INT NOT NULL,
@@ -22,52 +27,65 @@ CREATE TABLE tbl_departamento(
     PRIMARY KEY(id_codigo)
 )
 CREATE TABLE tbl_ciudad(
-    codigo_postal INT NOT NULL,
+    id_ciudad INT NOT NULL,
     nombre VARCHAR(20) NOT NULL,
-    departamento VARCHAR(20) NOT NULL,
+    id_departamento INT NOT NULL,
     direccion INT(20) NOT NULL,
-    PRIMARY KEY(codigo_postal)
+    PRIMARY KEY(id_ciudad),
+    FOREIGN KEY(id_departamento) REFERENCES tbl_departamento(id_codigo)
 )
 CREATE TABLE tbl_cliente(
-    identificacion INT NOT NULL,
+    id_cliente INT NOT NULL,
     sede VARCHAR(20) NOT NULL,
     ciudad VARCHAR(20) NOT NULL,
     nombre VARCHAR(20) NOT NULL,
     apellidos VARCHAR(20) NOT NULL,
     direccion INT(20) NOT NULL,
     correo VARCHAR(30) NOT NULL,
-    PRIMARY KEY(identificacion)
+    PRIMARY KEY(id_cliente)
 )
 CREATE TABLE tbl_vendedor(
-    identificacion INT NOT NULL,
+    id_vendedor INT NOT NULL,
     correo VARCHAR(20) NOT NULL,
     nombre VARCHAR(20) NOT NULL,
     apellidos VARCHAR(20) NOT NULL,
     ciudad VARCHAR(20) NOT NULL,
     direccion VARCHAR(20) NOT NULL,
-    PRIMARY KEY(identificacion)
-)
-CREATE TABLE tbl_cantidad(
-    codigo_cantidad INT NOT NULL,
-    cantidad_existente INT(20) NOT NULL,
-    cantidad_nueva INT(20) NOT NULL,
-    PRIMARY KEY(codigo_cantidad)
+    id_sede INT NOT NULL,
+    PRIMARY KEY(id_vendedor),
+    FOREIGN KEY(id_sede) REFERENCES tbl_sede (id_sede)
 )
 CREATE TABLE tbl_producto(
-    codigo_producto INT NOT NULL,
+    id_producto INT NOT NULL,
     nombre VARCHAR(20) NOT NULL,
-    PRIMARY KEY(codigo_producto)
+    id_categoria INT NOT NULL,
+    id_subcategoria INT NOT NULL,
+    PRIMARY KEY(id_producto),
+    FOREIGN KEY(id_categoria) REFERENCES tbl_categoria(id_categoria),
+    FOREIGN KEY(id_subcategoria) REFERENCES tbl_subcategoria(id_subcategoria)
 )
 CREATE TABLE tbl_sede(
-    codigo_sede INT NOT NULL,
+    id_sede INT NOT NULL,
     nombre VARCHAR(20) NOT NULL,
     direccion VARCHAR(20) NOT NULL,
     ciudad VARCHAR(20) NOT NULL,
     departamento VARCHAR(20) NOT NULL,
-    PRIMARY KEY(codigo_sede)
+    PRIMARY KEY(id_sede)
 )
 CREATE TABLE tbl_pago(
-    codigo_pago INT NOT NULL,
+    id_pago INT NOT NULL,
     forma_pago VARCHAR(20) NOT NULL,
-    PRIMARY KEY(codigo_pago)
+    PRIMARY KEY(id_pago)
 )
+
+CREATE TABLE tbl_categoria(
+    id_categoria INT NOT NULL,
+    nombre VARCHAR(20) NOT NULL,
+    PRIMARY KEY(id_categoria)
+)
+
+    CREATE TABLE tbl_subcategoria(
+        id_subcategoria INT NOT NULL,
+        nombre VARCHAR(20) NOT NULL,
+        PRIMARY KEY(id_subcategoria)
+    )

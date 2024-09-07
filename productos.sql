@@ -51,4 +51,3 @@ CREATE TABLE tbl_sede(
     direccion VARCHAR(20) NOT NULL,
     PRIMARY KEY(id_sede)
 )
-

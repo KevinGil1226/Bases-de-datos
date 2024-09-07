@@ -3,7 +3,7 @@ CREATE DATABASE bd_estudiantes;
 USE bd_estudiantes;
 
 CREATE TABLE tbl_estudiante (
-    id_estudiante INT(10) NOT NULL,
+    id_estudiante INT (10) NOT NULL,
     nombres VARCHAR(20) NOT NULL,
     apellidos VARCHAR(20) NOT NULL,
     id_carrera INT NOT NULL,
