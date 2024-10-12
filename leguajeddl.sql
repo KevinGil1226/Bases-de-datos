@@ -58,3 +58,51 @@ REFERENCES tabla_referencia(nombre_columna_referenciada);
 --Eliminar una clave foranea
 ALTER TABLE nombre_tabla;
 DROP FOREIGN KEY nombre_clave_foranea;
+
+
+--Funciones matemáticas
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--Obtiene el número de registros de una tabla.
+SELECT COUNT(*) FROM empleados;
+--Obtiene la suma de los salarios de los empleados.
+SELECT SUM(salario) FROM empleados;
+--Obtiene el promedio de los salrios de los empleados.
+SELECT AVG(salario) FROM empleados;
+--Obtiene el mínimo de los salarios de los empleados.
+SELECT MIN(salario) FROM empleados;
+--Obtiene el máximo de los salrios de los empleados.
+SELECT MAX(salario) FROM empleados;
+--Redondea un número a una cantidad especifica de decimales.
+SELECT ROUND(salario,2) FROM empleados;
+--Redondea un número hacia arriba al entero mas cercano.
+SELECT CEIL(salario) FROM empleados;
+--Redonde un número hacia abajo al entero mas cercano.
+SELECT FLOOR(nombre) FROM empleados;
+
+--Funciones de cadena
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+--Obtiene el nombre completo de un empleado
+SELECT CONCAT(nombres,'',apellidos) AS nombre_completo FROM empleados;
+--Obtiene la abreviatura de una cadena 
+SELECT SUBSTRING(nombres,1,3) AS abreviatura FROM empleados;
+--Obtiene la longitud de una cadena.
+SELECT LENGTH(nombres) FROM empleados;
+--Convierte una cadena a mayúsculas.
+SELECT UPPER(nombres) FROM empleados;
+--Convierte una cadena a minúsculas.
+SELECT LOWER(nombre) FROM empleados;
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--Funciones de fecha y hora
+--Obtiene la fecha y hora actual
+SELECT NOW()
+--Obtiene la fecha actual.
+SELECT CURDATE();
+--Calcula la diferencia entre dos fechas.
+SELECT DATEDIFF('2024-10-15', '2024-10-01') AS diferencia_dias;
+--Extrae el año de una fecha.
+SELECT YEAR(fecha_nacimiento) FROM empledos;
+--Funciones de control de flujos
+SELECT nombre, IF(salario > 3000, 'Alta','Baja') AS nivel_salarial FROM empleados;

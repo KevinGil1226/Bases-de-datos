@@ -8,6 +8,9 @@ WHERE (datos)
 SELECT (campostabla1,campostabla2)
 FROM nombre_tabla 
 WHERE(condición)
+
+UPDATE nombre_tabla SET campom = valorm.....
+WHERE (condicion) 
 /*ejemplo
 USE bd_estudiantes;
 SELECT nombres,semestre,apellidos 
