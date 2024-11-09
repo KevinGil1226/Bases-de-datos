@@ -50,4 +50,4 @@ CREATE TABLE tbl_sede(
     ciudad VARCHAR(20) NOT NULL,
     direccion VARCHAR(20) NOT NULL,
     PRIMARY KEY(id_sede)
-|||)
+)
